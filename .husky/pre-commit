@@ -1,0 +1,38 @@
+# #!/usr/bin/env sh
+# . "$(dirname -- "$0")/_/husky.sh"
+
+# npm test
+
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo '🏗️👷 Styling, testing, and building your project before committing...'
+
+# Check Prettier standards
+if ! npm run check-format; then
+    echo '⚠️ Formatting issue detected. Please run "npm run format" to apply the necessary changes and try committing again.'
+    exit 1
+fi
+
+# Check ESLint standards
+if ! npm run check-lint; then
+    echo '⚠️ Linting error detected. Please address the issues listed above and try committing again.'
+    exit 1
+fi
+
+# Check TypeScript standards
+if ! npm run check-types; then
+    echo '⚠️ Type check failed. Please resolve the issues mentioned and try committing again.'
+    exit 1
+fi
+
+# If everything passes, proceed to build
+echo '🤔 Checking build process...'
+
+if ! npm run build; then
+    echo '❌ Build failed. Please review the errors above to identify the issues.'
+    exit 1
+fi
+
+# If everything passes, allow the commit
+echo '✅ All checks passed! Committing your changes now. ✅'
