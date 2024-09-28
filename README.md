@@ -50,15 +50,16 @@ To get started with Sapien, follow these steps:
 <h3> ESLint </h3>
 ESLint is used to identify and fix problems in JavaScript and TypeScript code. To run ESLint, use:
 
-  ```sh
-  npm run check-lint
-  ```
+```sh
+npm run check-lint
+```
+
 <h3> Prettier </h3>
 For consitent code formatting, use:
 
-  ```sh
-  npm run check-format
-  ```
+```sh
+npm run check-format
+```
 
 <h3> Husky </h3>
-Husky is used to manage Git hooks. The pre-commit hook checks for formatting, linting, and type errors, and also builds the project. 
+Husky is used to manage Git hooks. The pre-commit hook checks for formatting, linting, and type errors, and also builds the project.
