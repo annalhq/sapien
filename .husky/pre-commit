@@ -3,8 +3,6 @@
 
 # npm test
 
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 
 echo '🏗️👷 Styling, testing, and building your project before committing...'
 
