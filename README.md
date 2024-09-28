@@ -1,49 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with
-[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h3 align="center"> Sapien, a nano-gpt based chatbot </h3>
 
-## Getting Started
+<div align="center">
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
+  <img src="https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
+  <img src="https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcn/ui&logoColor=white"/>
+</div>
 
-First, run the development server:
+## 📋 <a name="table">Table of Contents</a>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. ⚡ [Introduction](#introduction)
+2. 🚀 [Getting Started](#getting-started)
+3. 📊 [Tech Stack](#tech-stack)
+4. 🛠️ [Code Formatting](#code-formatting)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+## ⚡ <a name="introduction">Introduction</a>
 
-You can start editing the page by modifying `app/page.tsx`. The page
-auto-updates as you edit the file.
+Sapien is a nano-gpt based chatbot.
 
-This project uses
-[`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
-to automatically optimize and load [Geist](https://vercel.com/font), a new font
-family for Vercel.
+## 🚀 <a name="getting-started">Getting Started</a>
 
-## Learn More
+To get started with Sapien, follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/annalhq/sapien.git
+   cd sapien
+   ```
+2. Install dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```sh
+   npm install
+   ```
 
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js) - your
-feedback and contributions are welcome!
+3. Run the dev server
 
-## Deploy on Vercel
+   ```sh
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
+🛠️ <a name="code-formatting">Code Formatting</a>
 
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying)
-for more details.
+<div align="center">
+  <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="eslint" />
+  <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white" alt="prettier" />
+  <img src="https://img.shields.io/badge/🐶 Husky-000000?style=for-the-badge&logo=husky&logoColor=white" alt="husky" />
+</div>
+
+<h3> ESLint </h3>
+ESLint is used to identify and fix problems in JavaScript and TypeScript code. To run ESLint, use:
+
+  ```sh
+  npm run check-lint
+  ```
+<h3> Prettier </h3>
+For consitent code formatting, use:
+
+  ```sh
+  npm run check-format
+  ```
+
+<h3> Husky </h3>
+Husky is used to manage Git hooks. The pre-commit hook checks for formatting, linting, and type errors, and also builds the project. 
