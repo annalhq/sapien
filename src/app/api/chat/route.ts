@@ -19,22 +19,19 @@ export async function POST(req: Request) {
   });
 
   return new StreamingTextResponse(
-    ModelFusionTextStream(
-      textStream,
-      {
-        onStart() {
-          console.log("onStart");
-        },
-        onToken(token) {
-          console.log("onToken", token);
-        },
-        onCompletion: () => {
-          console.log("onCompletion");
-        },
-        onFinal(completion) {
-          console.log("onFinal", completion);
-        },
-      }
-    )
+    ModelFusionTextStream(textStream, {
+      onStart() {
+        console.log("onStart");
+      },
+      onToken(token) {
+        console.log("onToken", token);
+      },
+      onCompletion: () => {
+        console.log("onCompletion");
+      },
+      onFinal(completion) {
+        console.log("onFinal", completion);
+      },
+    })
   );
 }

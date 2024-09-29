@@ -10,7 +10,12 @@ import { Bot, User, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
-const Message = ({ content, isUserMessage }) => {
+interface MessageProps {
+  content: string;
+  isUserMessage: boolean;
+}
+
+const Message: React.FC<MessageProps> = ({ content, isUserMessage }) => {
   return (
     <div
       className={cn({
@@ -62,12 +67,10 @@ const Chat = () => {
 
   return (
     <div className="flex flex-col h-screen bg-zinc-900 text-white">
-      {/* Header */}
       <header className="p-4 bg-zinc-800">
         <h1 className="text-xl font-bold">Sapien</h1>
       </header>
 
-      {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto pb-32">
         {messages.map((message) => (
           <Message
@@ -79,7 +82,6 @@ const Chat = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Floating Input Area */}
       <div className="fixed bottom-4 left-0 right-0 mx-auto max-w-2xl px-4">
         <form onSubmit={handleSubmit} className="relative">
           <Textarea
@@ -93,7 +95,7 @@ const Chat = () => {
                 handleSubmit(e);
               }
             }}
-            placeholder="Enter your question..."
+            placeholder="How can I help you today..."
             className="resize-none bg-zinc-800 hover:bg-zinc-700 rounded-2xl pr-12 py-3 text-base shadow-lg border border-zinc-700"
           />
           <Button
