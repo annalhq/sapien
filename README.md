@@ -1,8 +1,9 @@
-<h3 align="center"> Sapien, a nano-gpt based chatbot </h3>
+<h3 align="center"> Sapien, custom fine-tuned LLAMA-3.1-70B model </h3>
 
 <div align="center">
   <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
-  <img src="https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white" />
+  <img src="https://img.shields.io/badge/🤗 HuggingFace-000000?style=for-the-badge&logo=husky&logoColor=white" alt="husky" />
+  <img src="https://img.shields.io/badge/Ollama-FFFFFF?style=for-the-badge&logo=Ollama&logoColor=black" />
   <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
   <img src="https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcn/ui&logoColor=white"/>
 </div>
@@ -16,7 +17,7 @@
 
 ## ⚡ <a name="introduction">Introduction</a>
 
-Sapien is a nano-gpt based chatbot.
+Sapien, custom intent based chatbot. The base model is fine-tuned LORA LLAMA-3.1-70B. It is trained on the Alpaca-7B dataset
 
 ## 🚀 <a name="getting-started">Getting Started</a>
 
