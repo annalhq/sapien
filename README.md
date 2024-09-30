@@ -7,20 +7,28 @@
   <img src="https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcn/ui&logoColor=white"/>
 </div>
 
+***
 
 ## 📋 <a name="table">Table of Contents</a>
 
 1.  ⚡ [Introduction](#introduction)
-2.  ✨ [Features](#-key-features)
-2.  🚀 [Getting Started](#getting-started)
-3.  📊 [Tech Stack](#tech-stack)
-4.  🛠️ [Code Formatting](#code-formatting)
+2.  ✨ [Key Features](#key-features)
+3.  📊 [Fine tuned models](#models)
+4.  💬 [Inferencing](#inferencing)
+5.  📋 [Requirements](#requirements)
+6.  🚀 [Getting Started](#getting-started)
+7.  🐥 [Frontend](#frontend)
+8.  🗄️ [Backend](#backend)
+9.  🛠️ [Code Formatting](#code-formatting)
 
+***
 ## ⚡ <a name="introduction">Introduction</a>
 
 Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation (LoRA)** on the **Alpaca** dataset. The training is optimized for 4-bit and 16-bit precision. 
 
 [Watch more detailed project walkthrough](https://www.youtube.com/watch?v=ZoLTJMRrg20)
+
+***
 
 ## ✨ <a name="features">Key Features</a>
 
@@ -29,11 +37,15 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation (L
 - **Alpaca Dataset**: Instruction-based fine-tuning dataset.
 - **Model Hosting**: Push the trained model to Hugging Face for deployment.
 
-## 🎶 Fine tuned models
+***
+
+## 🎶 <a name="models">Fine tuned models</a>
 - **[My fine tuned Llama model](https://huggingface.co/annalhq/llama-3.1-8B-lora-alpaca/)**
 - **[Official Meta Llama 3.2 for Ollama](https://ollama.com/library/llama3.2:3b)** (released on 25th Sept 2024)
 
-## 💬Native inferencing
+***
+
+## 💬<a name="inferencing">Inferencing</a>
 (This will work only when you have all model files locally saved after running trainer)
 
 ```python
@@ -55,6 +67,7 @@ inputs = tokenizer(
 outputs = model.generate(**inputs, max_new_tokens=64)
 print(tokenizer.batch_decode(outputs))
 ```
+***
 
 ## 📋 <a name="requirements">Requirements</a>
 To run Sapien, you need the following requirements:
@@ -66,6 +79,8 @@ To run Sapien, you need the following requirements:
 - **llama.cpp** (for method 3)
 
 Make sure you have these installed before proceeding.
+
+***
 
 ## 🚀 <a name="getting-started">Getting Started</a>
 
@@ -89,6 +104,8 @@ To get started with Sapien, follow these steps:
    ```
 4. For the backend part refer to Backend section accordingly
 
+***
+
 ## <a name="frontend"> Frontend </a>
 Deployed using NextJS and Shadcn UI library alongside Vercel's AI SDK UI.
 
@@ -109,19 +126,21 @@ Use `--no-verify` flag alongside with your git command to skip the invocation of
 <h3> ESLint </h3>
 ESLint is used to identify and fix problems in JavaScript and TypeScript code. To run ESLint, use:
 
-```sh
+```bash
 npm run check-lint
 ```
 
 <h3> Prettier </h3>
 For consitent code formatting, use:
 
-```sh
+```bash
 npm run check-format
 ```
 
 <h3> Husky </h3>
 Husky is used to manage Git hooks. The pre-commit hook checks for formatting, linting, and type errors, and also builds the project.
+
+***
 
 ## <a name="backend"> Backend </a>
 
@@ -196,3 +215,36 @@ If you want to use my model in Ollama follow these instructions:
   ```
 
 ### <a name="llama"> 3. llama.cpp server</a>
+
+1. Cloning llama.cpp from [here](https://github.com/ggerganov/llama.cpp)
+  ```bash
+  git clone https://github.com/ggerganov/llama.cpp
+  cd llama.cpp
+  ```
+
+2. Compiling llama.cpp 
+
+- Using `make`:
+  - On Linux or MacOS:
+
+      ```bash
+      make
+      ```
+
+- On Windows (x86/x64 only, arm64 requires cmake):
+
+    1. Download the latest fortran version of [w64devkit](https://github.com/skeeto/w64devkit/releases).
+    2. Extract `w64devkit` on your pc.
+    3. Run `w64devkit.exe`.
+    4. Use the `cd` command to reach the `llama.cpp` folder.
+    5. From here you can run:
+        ```bash
+        make
+        ```
+
+ 3. Convert SafeTensore modelfile of my model to GGUF using these [instructions](https://github.com/ggerganov/llama.cpp?tab=readme-ov-file#prepare-and-quantize)
+
+ 4. Start the llama.cpp server
+  ```bash
+  ./server -m models/llama-3.1-8B-lora-alpaca.gguf
+  ```
