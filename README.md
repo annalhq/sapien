@@ -10,10 +10,11 @@
 
 ## 📋 <a name="table">Table of Contents</a>
 
-1. ⚡ [Introduction](#introduction)
-2. 🚀 [Getting Started](#getting-started)
-3. 📊 [Tech Stack](#tech-stack)
-4. 🛠️ [Code Formatting](#code-formatting)
+1.  ⚡ [Introduction](#introduction)
+2.  ✨ [Features](#-key-features)
+2.  🚀 [Getting Started](#getting-started)
+3.  📊 [Tech Stack](#tech-stack)
+4.  🛠️ [Code Formatting](#code-formatting)
 
 ## ⚡ <a name="introduction">Introduction</a>
 
@@ -21,7 +22,7 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation (L
 
 [Watch more detailed project walkthrough](https://www.youtube.com/watch?v=ZoLTJMRrg20)
 
-## ✨ Key Features
+## ✨ <a name="features">Key Features</a>
 
 - **LoRA (Low-Rank Adaptation)** for optimizing large language models.
 - **4-bit & 16-bit precision** fine-tuning using advanced quantization techniques.
@@ -30,7 +31,7 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation (L
 
 ## 🎶 Fine tuned models
 - **[My fine tuned Llama model](https://huggingface.co/annalhq/llama-3.1-8B-lora-alpaca/)**
-- **[Llama 3.2](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct)**
+- **[Official Meta Llama 3.2 for Ollama](https://ollama.com/library/llama3.2:3b)** (released on 25th Sept 2024)
 
 ## 💬Native inferencing
 (This will work only when you have all model files locally saved after running trainer)
@@ -86,18 +87,24 @@ To get started with Sapien, follow these steps:
    ```sh
    npm run dev
    ```
+4. For the backend part refer to Backend section accordingly
 
 ## <a name="frontend"> Frontend </a>
 Deployed using NextJS and Shadcn UI library alongside Vercel's AI SDK UI.
 
 ### 🛠️ <a name="code-formatting"> Code Formatting </a>
 
-
 <div align="left">
   <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="eslint" />
   <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white" alt="prettier" />
   <img src="https://img.shields.io/badge/🐶 Husky-000000?style=for-the-badge&logo=husky&logoColor=white" alt="husky" />
 </div>
+
+These integrations will make sure while deploying that there is no server side issues (also maintains code consistency)
+
+If you are making changes in the code, make sure to run `npm run format` otherwise Husky will prevent you to committing the code to repository.
+
+Use `--no-verify` flag alongside with your git command to skip the invocation of Husky.
 
 <h3> ESLint </h3>
 ESLint is used to identify and fix problems in JavaScript and TypeScript code. To run ESLint, use:
@@ -118,6 +125,74 @@ Husky is used to manage Git hooks. The pre-commit hook checks for formatting, li
 
 ## <a name="backend"> Backend </a>
 
-### <a name="hf"> 1. HuggingFace inference </a>
-### <a name="ollama"> 2. Ollama server </a>
+### <a name="hf"> 1. 🤗 HuggingFace inference </a>
+
+This Serverless Inference API allows you to easily do inference on my fine tuned models or you can use any other models with TextToText generation models.
+
+**Getting tokens from HuggingFace**
+
+Login to HuggingFace and get tokens from [here](https://huggingface.co/settings/tokens/new?globalPermissions=inference.serverless.write&tokenType=fineGrained).
+As reccommended, it is preferable to create `fine-grained` tokens with the scope to `Make calls to the serverless Inference API`
+
+[Official Tokens guide by HuggingFace](https://huggingface.co/docs/hub/en/security-tokens)
+
+In [v1.0.0](https://github.com/annalhq/sapien/commit/e24b3a4bc80c281869391538d45cebe10543b182) of this project, [HFInference](https://huggingface.co/docs/huggingface.js/inference/classes/HfInference) client is used for handling inference from model.
+
+```js
+import { HfInference } from "@huggingface/inference";
+
+const inference = new HfInference("HUGGINGFACE_API_KEY");
+
+const result = await inference.textClassification({
+    model: "https://huggingface.co/annalhq/llama-3.1-8B-lora-alpaca",
+    inputs: "Hi! How are you?",
+});
+
+console.log(result);
+```
+
+Store HF token variables `.env.local` as 
+```
+HUGGINGFACE_API_KEY=hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+Now this will use this serverless API from my model for streaming text.
+
+***
+
+### <a name="ollama"> 2. 🦙 Ollama server </a>
+(Recommended for locally running)
+
+Here you can use Ollama to serve my model locally. As it does not has stream handling capabilities as for chat frontend I've used Vercel AI SDK with ModelFusion.
+
+Vercel AI SDK will handle stream forwarding and rendering, and ModelFusion to integrate Ollama with the Vercel AI SDK.
+
+1. Install Ollama from official [site](https://ollama.com/) 
+2. Pulling model on Ollama
+
+If you want to use my model in Ollama follow these instructions:
+
+1. Download [HFDownloader](https://github.com/bodaay/HuggingFaceModelDownloader)
+2. Download my model in SafeTensor format from HF
+  ```
+  hf -m annalhq/llama-3.1-8B-lora-alpaca
+  ```
+3. **Importing a fine tuned adapter from Safetensors weights**
+
+  First, create a `Modelfile` with a `FROM` command pointing at the base model you used for fine tuning, and an `ADAPTER` command which points to the directory with your Safetensors adapter:
+
+  ```dockerfile
+  FROM <base annalhq/llama-3.1-8B-lora-alpaca>
+  ADAPTER /path/to/safetensors/adapter/directory
+  ```
+
+  ```bash
+  ollama create annalhq/llama-3.1-8B-lora-alpaca
+  ```
+
+  Lastly, test the model:
+
+  ```bash
+  ollama run annalhq/llama-3.1-8B-lora-alpaca
+  ```
+
 ### <a name="llama"> 3. llama.cpp server</a>
