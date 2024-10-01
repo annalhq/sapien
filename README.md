@@ -13,6 +13,9 @@
   <a target="_blank" href="https://colab.research.google.com/github/annalhq/sapien/blob/main/model/trainers/llama_3_1.ipynbtoring.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
   </a>
+  &nbsp;
+  <img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/deploy-on-spaces-md-dark.svg"/>
+
 </div>
 
 
