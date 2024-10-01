@@ -67,7 +67,7 @@ const Chat = () => {
 
   return (
     <div className="flex flex-col h-screen bg-zinc-900 text-white">
-      <header className="p-4 bg-zinc-800">
+      <header className="p-3 bg-zinc-800">
         <h1 className="text-xl font-bold">Sapien</h1>
       </header>
 

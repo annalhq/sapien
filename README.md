@@ -43,6 +43,10 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation
 (LoRA)** on the **Alpaca** dataset. The training is optimized for 4-bit and
 16-bit precision.
 
+<div align="center">
+  <img src="public/preview.gif" alt="Project Preview" />
+</div>
+
 [Watch more detailed project walkthrough](https://www.youtube.com/watch?v=ZoLTJMRrg20)
 
 ---
