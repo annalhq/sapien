@@ -14,8 +14,10 @@
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
   </a>
   &nbsp;
+  <a target="_blank" href="https://huggingface.co/new-space">
   <img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/deploy-on-spaces-md-dark.svg"/>
-
+  </a>
+  
 </div>
 
 
