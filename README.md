@@ -8,6 +8,14 @@
   <img src="https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcn/ui&logoColor=white"/>
 </div>
 
+<br/>
+<div align="center">
+  <a target="_blank" href="https://colab.research.google.com/github/annalhq/sapien/blob/main/model/trainers/llama_3_1.ipynbtoring.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+  </a>
+</div>
+
+
 ---
 
 ## 📋 <a name="table">Table of Contents</a>
@@ -129,6 +137,7 @@ Deployed using NextJS and Shadcn UI library alongside Vercel's AI SDK UI.
   <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white" alt="prettier" />
   <img src="https://img.shields.io/badge/🐶 Husky-000000?style=for-the-badge&logo=husky&logoColor=white" alt="husky" />
 </div>
+
 
 These integrations will make sure while deploying that there is no server side
 issues (also maintains code consistency)
