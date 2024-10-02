@@ -67,6 +67,63 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation
 - **[Official Meta Llama 3.2 for Ollama](https://ollama.com/library/llama3.2:3b)**
   (released on 25th Sept 2024)
 
+**Model config**:
+```json
+{
+  "_name_or_path": "unsloth/meta-llama-3.1-8b-bnb-4bit",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 14336,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "num_key_value_heads": 8,
+  "pad_token_id": 128004,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 8.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": false,
+  "torch_dtype": "float16",
+  "transformers_version": "4.45.1",
+  "unsloth_version": "2024.9.post3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+```
+
+**Trainer stats:**
+```json
+[
+    60,
+    0.8564618517955144,
+    {
+        "train_runtime": 441.2579,
+        "train_samples_per_second": 1.088,
+        "train_steps_per_second": 0.136,
+        "total_flos": 5726714157219840.0,
+        "train_loss": 0.8564618517955144,
+        "epoch": 0.00927357032457496
+    }
+]
+```
 ---
 
 ## 💬<a name="inferencing">Inferencing</a>
