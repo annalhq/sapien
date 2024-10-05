@@ -20,7 +20,6 @@
   
 </div>
 
-
 ---
 
 ## 📋 <a name="table">Table of Contents</a>
@@ -68,12 +67,11 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation
   (released on 25th Sept 2024)
 
 **Model config**:
+
 ```json
 {
   "_name_or_path": "unsloth/meta-llama-3.1-8b-bnb-4bit",
-  "architectures": [
-    "LlamaForCausalLM"
-  ],
+  "architectures": ["LlamaForCausalLM"],
   "attention_bias": false,
   "attention_dropout": 0.0,
   "bos_token_id": 128000,
@@ -91,7 +89,7 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation
   "num_key_value_heads": 8,
   "pad_token_id": 128004,
   "pretraining_tp": 1,
-  "rms_norm_eps": 1e-05,
+  "rms_norm_eps": 1e-5,
   "rope_scaling": {
     "factor": 8.0,
     "high_freq_factor": 4.0,
@@ -110,20 +108,22 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation
 ```
 
 **Trainer stats:**
+
 ```json
 [
-    60,
-    0.8564618517955144,
-    {
-        "train_runtime": 441.2579,
-        "train_samples_per_second": 1.088,
-        "train_steps_per_second": 0.136,
-        "total_flos": 5726714157219840.0,
-        "train_loss": 0.8564618517955144,
-        "epoch": 0.00927357032457496
-    }
+  60,
+  0.8564618517955144,
+  {
+    "train_runtime": 441.2579,
+    "train_samples_per_second": 1.088,
+    "train_steps_per_second": 0.136,
+    "total_flos": 5726714157219840.0,
+    "train_loss": 0.8564618517955144,
+    "epoch": 0.00927357032457496
+  }
 ]
 ```
+
 ---
 
 ## 💬<a name="inferencing">Inferencing</a>
@@ -203,7 +203,6 @@ Deployed using NextJS and Shadcn UI library alongside Vercel's AI SDK UI.
   <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white" alt="prettier" />
   <img src="https://img.shields.io/badge/🐶 Husky-000000?style=for-the-badge&logo=husky&logoColor=white" alt="husky" />
 </div>
-
 
 These integrations will make sure while deploying that there is no server side
 issues (also maintains code consistency)

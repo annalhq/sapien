@@ -1,6 +1,3 @@
-// bug in v1.0.0 (huggingface inferenec pipeline) https://github.com/vercel/ai/issues/1338
-
-//v2.0.0
 "use client";
 
 import React, { useRef, useEffect } from "react";
@@ -15,63 +12,48 @@ interface MessageProps {
   isUserMessage: boolean;
 }
 
-const Message: React.FC<MessageProps> = ({ content, isUserMessage }) => {
-  return (
-    <div
-      className={cn({
-        "bg-zinc-800": isUserMessage,
-        "bg-zinc-900/25": !isUserMessage,
-      })}
-    >
-      <div className="p-6">
-        <div className="max-w-3xl mx-auto flex items-start gap-2.5">
-          <div
-            className={cn(
-              "size-10 shrink-0 aspect-square rounded-full border border-zinc-700 bg-zinc-900 flex justify-center items-center",
-              {
-                "bg-blue-950 border-blue-700 text-zinc-200": isUserMessage,
-              }
-            )}
-          >
-            {isUserMessage ? (
-              <User className="size-5" />
-            ) : (
-              <Bot className="size-5 text-white" />
-            )}
-          </div>
-          <div className="flex flex-col ml-6 w-full">
-            <div className="flex items-center space-x-2">
-              <span className="text-sm font-semibold text-white">
-                {isUserMessage ? "You" : "Sapien"}
-              </span>
-            </div>
-            <p className="text-sm font-normal py-2.5 text-white">{content}</p>
-          </div>
-        </div>
+const Message: React.FC<MessageProps> = ({ content, isUserMessage }) => (
+  <div
+    className={cn("py-4 px-6", {
+      "bg-gray-50": isUserMessage,
+      "bg-white": !isUserMessage,
+    })}
+  >
+    <div className="max-w-3xl mx-auto flex items-start gap-4">
+      <div
+        className={cn(
+          "w-8 h-8 rounded-full flex justify-center items-center",
+          isUserMessage ? "bg-blue-500" : "bg-gray-200"
+        )}
+      >
+        {isUserMessage ? (
+          <User className="w-5 h-5 text-white" />
+        ) : (
+          <Bot className="w-5 h-5 text-gray-600" />
+        )}
+      </div>
+      <div className="flex-1">
+        <p className="text-sm text-gray-800">{content}</p>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
-const Chat = () => {
+const Chat: React.FC = () => {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    scrollToBottom();
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (
-    <div className="flex flex-col h-screen bg-zinc-900 text-white">
-      <header className="p-3 bg-zinc-800">
-        <h1 className="text-xl font-bold">Sapien</h1>
+    <div className="flex flex-col h-screen bg-white">
+      <header className="py-4 px-6 bg-white border-b border-gray-200">
+        <h1 className="text-xl font-semibold text-gray-800">Sapien Chat</h1>
       </header>
 
-      <div className="flex-1 overflow-y-auto pb-32">
+      <div className="flex-1 overflow-y-auto">
         {messages.map((message) => (
           <Message
             key={message.id}
@@ -82,29 +64,33 @@ const Chat = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="fixed bottom-4 left-0 right-0 mx-auto max-w-2xl px-4">
-        <form onSubmit={handleSubmit} className="relative">
-          <Textarea
-            rows={1}
-            autoFocus
-            onChange={handleInputChange}
-            value={input}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                handleSubmit(e);
-              }
-            }}
-            placeholder="How can I help you today..."
-            className="resize-none bg-zinc-800 hover:bg-zinc-700 rounded-2xl pr-12 py-3 text-base shadow-lg border border-zinc-700"
-          />
-          <Button
-            size="sm"
-            type="submit"
-            className="absolute z-10 right-2 bottom-1.5 bg-transparent hover:bg-zinc-700"
-          >
-            <Send className="size-5" />
-          </Button>
+      <div className="border-t border-gray-200 p-4">
+        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
+          <div className="relative">
+            <Textarea
+              rows={1}
+              autoFocus
+              onChange={handleInputChange}
+              value={input}
+              onKeyDown={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSubmit(
+                    e as unknown as React.FormEvent<HTMLFormElement>
+                  );
+                }
+              }}
+              placeholder="Type your message here..."
+              className="resize-none pr-12 py-3 text-base shadow-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
+            />
+            <Button
+              size="sm"
+              type="submit"
+              className="absolute right-2 bottom-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md p-2"
+            >
+              <Send className="w-4 h-4" />
+            </Button>
+          </div>
         </form>
       </div>
     </div>
