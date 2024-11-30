@@ -208,7 +208,7 @@ These integrations will make sure while deploying that there is no server side
 issues (also maintains code consistency)
 
 If you are making changes in the code, make sure to run `npm run format`
-otherwise Husky will prevent you to committing the code to repository.
+otherwise Husky will prevent you from committing the code to repository.
 
 Use `--no-verify` flag alongside with your git command to skip the invocation of
 Husky.
