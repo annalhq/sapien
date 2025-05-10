@@ -42,6 +42,8 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation
 (LoRA)** on the **Alpaca** dataset. The training is optimized for 4-bit and
 16-bit precision.
 
+- You can find this fine-tuned model here on **[HuggingFace](https://huggingface.co/annalhq/llama-3.1-8B-lora-alpaca/)**
+
 <div align="center">
   <img src="public/preview.gif" alt="Project Preview" />
 </div>
@@ -60,13 +62,9 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation
 
 ---
 
-## 🎶 <a name="models">Fine tuned models</a>
+## 🎶 <a name="models">Model config</a>
 
-- **[My fine tuned Llama model](https://huggingface.co/annalhq/llama-3.1-8B-lora-alpaca/)**
-- **[Official Meta Llama 3.2 for Ollama](https://ollama.com/library/llama3.2:3b)**
-  (released on 25th Sept 2024)
-
-**Model config**:
+**config**:
 
 ```json
 {
