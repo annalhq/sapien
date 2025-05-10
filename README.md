@@ -43,7 +43,7 @@ Sapien is the **LLaMA 3.1 70B** model fined tuned using **Low-Rank Adaptation
 16-bit precision.
 
 - You can find this fine-tuned model here on **[HuggingFace](https://huggingface.co/annalhq/llama-3.1-8B-lora-alpaca/)**
-
+- Read detailed documentation of this project **[here](https://docs.google.com/document/d/e/2PACX-1vR5ozWPNSnuONabR5rk55kiVT2hgtOGnyHz3g9Ltaiy8eXDXnxxUHHXIRJgewR4ipA4HVBtvpRx7lPd/pub)**
 <div align="center">
   <img src="public/preview.gif" alt="Project Preview" />
 </div>
